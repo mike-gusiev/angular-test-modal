@@ -1,0 +1,57 @@
+<div class="container">
+  <h1> App</h1>
+  
+  <div class="content">
+    <h2>Modal with close button and text inside</h2>
+    <app-btn (click)="showModal1 = true" content="First modal" btnType="info">
+    </app-btn>
+    <app-modal [(visible)]="showModal1" title="this is header">
+      <p> this is some text inside via ng-content with btn below</p>
+      <app-btn (click)="showModal1 = false" content="Close" btnType="danger">
+      </app-btn>
+    </app-modal>
+  </div>
+  <hr>
+
+  <div class="content">
+    <h2>Modal with just text inside</h2>
+    <app-btn (click)="showModal2 = true" content="Second modal" btnType="info">
+    </app-btn>
+    <app-modal [(visible)]="showModal2">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus
+        earum ex minima natus numquam, quibusdam velit voluptas. Dignissimos
+        dolorum nam officiis provident quod sunt veritatis vero? Architecto
+        commodi laboriosam non!</p>
+    </app-modal>
+  </div>
+  <hr>
+
+  <div class="content">
+    <h2>Modal with input inside</h2>
+    <app-btn (click)="showModal3 = true" content="Third modal" btnType="info">
+    </app-btn>
+    <app-modal [(visible)]="showModal3" title="Contact form" >
+      <form class="content" (ngSubmit)="onFormSubmit(f)" #f="ngForm">
+        <label>
+          <span>First Name:</span>
+          <input type="text" ngModel name="firstName">
+        </label>
+        <label><span>Email:</span>
+          <input type="email" ngModel name="email">
+        </label>
+        <div class="row">
+          <app-btn content="Submit" btnType="success">
+          </app-btn>
+          <app-btn content="Close" btnType="danger" (click)="showModal3 =false">
+          </app-btn>
+        </div>
+      </form>
+    </app-modal>
+    <p *ngIf="firstName">Hello <b>{{firstName}}</b>
+      <span *ngIf="email"> we will send some info to your email
+        {{email}}</span>
+    </p>
+  </div>
+
+</div>
+<hr>
